@@ -4,12 +4,12 @@
     become: yes
     gather_facts: false
     roles:
-      # - server
-      # - mysql
-      # - code
-      # - composer
-      # - apacheconfig
-      # - ssh
+      - server
+      - mysql
+      - code
+      - composer
+      - apacheconfig
+      - ssh
       - psql
   
 
