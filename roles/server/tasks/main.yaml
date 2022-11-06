@@ -1,0 +1,65 @@
+- name: Upgrade System
+  apt:
+    upgrade: dist
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install wget, git apaches, unzip, curl
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - wget
+    - git
+    - apache2
+    - unzip
+    - curl  
+
+- name: install require php dependacies
+  apt:  
+    name: "{{ item }}"
+    state: present
+  loop:
+    - lsb-release
+    - apt-transport-https
+    - ca-certificates  
+    - software-properties-common
+
+- name: add php repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+
+- name: Update the package list
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install PHP 8.1
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - php8.1
+    - libapache2-mod-php
+    - php8.1-mysql 
+    - php8.1-common 
+    - php8.1-mysql 
+    - php8.1-xml 
+    - php8.1-xmlrpc 
+    - php8.1-curl 
+    - php8.1-gd 
+    - php8.1-imagick 
+    - php8.1-cli 
+    - php8.1-dev 
+    - php8.1-imap 
+    - php8.1-mbstring 
+    - php8.1-opcache 
+    - php8.1-soap 
+    - php8.1-zip 
+    - php8.1-intl 
+
+- name: Update the package list
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600

@@ -1,0 +1,27 @@
+---
+  - name: setup server
+    hosts: laravel
+    become: yes
+    gather_facts: false
+    roles:
+      # - server
+      # - mysql
+      # - code
+      # - composer
+      # - apacheconfig
+      # - ssh
+      - psql
+  
+
+   
+
+
+
+
+  
+
+
+
+
+    
+ 

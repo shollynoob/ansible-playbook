@@ -1,0 +1,26 @@
+- name: configure apache host for laravel
+  template:
+    src: laravel.conf.j2
+    dest: /etc/apache2/sites-available/laravel.conf
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+- name: enable and rewrite apache host
+  command: "{{ item }} chdir=/etc/apache2/sites-available/"
+  with_items:
+  - a2enmod rewrite
+  - a2dissite 000-default.conf
+  - a2ensite laravel.conf  
+
+- name: change permission of laravel project
+  file:
+    path: /var/www/altschool/laravel
+    owner: www-data
+    group: www-data
+    mode: 0755
+    recurse: yes
+  notify: restart apache
+
+
+

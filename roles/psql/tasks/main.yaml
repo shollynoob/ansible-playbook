@@ -1,0 +1,19 @@
+- name: create a bash directory
+  file:
+    path: /home/bash
+    state: directory
+    mode: 0755
+  become: yes
+
+
+- name: copy bash script to bash directory
+  copy:
+    src: postgres.sh
+    dest: /home/bash/
+    mode: 0755
+
+
+- name: Execute the script
+  command: sh /home/bash/postgres.sh
+
+

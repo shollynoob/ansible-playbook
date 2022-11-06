@@ -1,0 +1,37 @@
+- name: create a altschool directory
+  file:
+    path: /var/www/altschool
+    state: directory
+    mode: 0755
+
+- name: download laravel from git to altschool directory
+  command: git clone https://github.com/f1amy/laravel-realworld-example-app.git
+  args:
+    chdir: /var/www/altschool
+
+- name: rename laravel-realworld-example-app to altschool
+  command: mv laravel-realworld-example-app laravel
+  args:
+    chdir: /var/www/altschool
+
+- name: edit web.php
+  lineinfile:
+    path: /var/www/altschool/laravel/routes/web.php
+    regexp: '^Route::get'
+    line: "Route::get('/', function () { return view('welcome'); });"
+    backup: yes
+
+- name: create the .env file
+  template:
+    src: .env.j2
+    dest: /var/www/altschool/laravel/.env
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+
+
+
+
+
+

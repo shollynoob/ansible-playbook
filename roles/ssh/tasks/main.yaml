@@ -1,0 +1,21 @@
+- name: install snapd
+  apt:
+    name: snapd
+    state: present
+
+- name: install certboat and let's encrypt
+  command: "{{ item }}"
+  with_items:
+    - snap install core
+    - snap refresh core
+    - snap install --classic certbot
+    - ln -s /snap/bin/certbot /usr/bin/certbot
+
+- name: install certificates
+  command: "{{ item }}"
+  with_items:
+    - certbot --apache -d {{ domain }} -d www.{{ domain }} --agree-tos --email {{ email }} --non-interactive
+    - certbot renew --dry-run
+
+    
+  
