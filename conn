@@ -1,4 +1,0 @@
-ansible-playbook playbook.yaml -i hosts --user azureuser --key-file olusola.pem
-
-
-ssh -i olusola.pem azureuser@20.230.205.94

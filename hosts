@@ -1,5 +1,0 @@
-[laravel]
-20.168.35.168
-
-[laravel:vars]
-ansible_python_interpreter=/usr/bin/python3
