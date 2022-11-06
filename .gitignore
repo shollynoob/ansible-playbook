@@ -1,2 +1,5 @@
 group_vars
 postgres.sh
+olusola.pem
+conn
+hosts
